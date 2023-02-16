@@ -136,7 +136,7 @@ class OwnersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        var_dump($id);
+        // var_dump($id);
         $owner = Owner::findOrFail($id);
         $owner->name = $request->name;
         $owner->email = $request->email;
