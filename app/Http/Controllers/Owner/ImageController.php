@@ -30,11 +30,11 @@ class ImageController extends Controller
 
     public function index()
     {
-        $images = Image::where('owner_id',Auth::id())
-        ->orderBy('updated_at','desc')
-        ->paginate(20);
+        $images = Image::where('owner_id', Auth::id())
+            ->orderBy('updated_at', 'desc')
+            ->paginate(20);
 
-        return view('owner.images.index',compact('images'));
+        return view('owner.images.index', compact('images'));
     }
 
     /**
@@ -57,8 +57,8 @@ class ImageController extends Controller
     {
         $imageFiles = $request->file('files');
         if (!is_null($imageFiles)) {
-            foreach($imageFiles as $imageFile){
-            $fileNameToStore = ImageService::upload($imageFile,'products');
+            foreach ($imageFiles as $imageFile) {
+                $fileNameToStore = ImageService::upload($imageFile, 'products');
                 Image::create([
                     'owner_id' => Auth::id(),
                     'filename' => $fileNameToStore,
@@ -66,33 +66,18 @@ class ImageController extends Controller
             }
         }
         return redirect()
-        ->route('owner.images.index')
-        ->with([
-            'message' => '画像登録を実施しました。',
-            'status' => 'info'
-        ]);
+            ->route('owner.images.index')
+            ->with([
+                'message' => '画像登録を実施しました。',
+                'status' => 'info'
+            ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $image = Image::findOrFail($id);
+        //dd(Shop::findOrFail($id));
+        return view('owner.images.edit', compact('image'));
     }
 
     /**
@@ -104,7 +89,21 @@ class ImageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => ['string', 'max:50'],
+        ]);
+
+        $image = Image::findOrFail($id);
+        $image->title = $request->title;
+
+        $image->save();
+
+        return redirect()
+        ->route('owner.images.index')
+        ->with([
+            'message' => '画像情報を更新しました。',
+            'status' => 'info'
+        ]);
     }
 
     /**
