@@ -39,7 +39,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($owners as $owner)
-                                        <tr>
+                                        <tr> 
                                             <td class="md:px-4 py-3"> {{ $owner->name }}
                                             </td>
                                             <td class="md:px-4 py-3"> {{ $owner->email }}
