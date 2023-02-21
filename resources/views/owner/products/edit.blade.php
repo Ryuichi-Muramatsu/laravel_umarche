@@ -9,8 +9,10 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                    <x-flash-message status="session('status')" /> 
                     <form method="post" action="{{ route('owner.products.update',['product' => $product->id]) }}">
                         @csrf
+                        @method('put')
                         <div class="-m-2">
                             <div class="p-2 w-1/2 mx-auto">
                                 <div class="relative">
@@ -43,7 +45,7 @@
                             </div>
                             <div class="p-2 w-1/2 mx-auto">
                                 <div class="relative">
-                                    <label for="current_quantity" class="leading-7 text-sm text-gray-600">初期在庫※必須</label>
+                                    <label for="current_quantity" class="leading-7 text-sm text-gray-600">現在の在庫</label>
                                     <input type="hidden" id="current_quantity" name="current_quantity" value="{{ $quantity }}" required>
                                     <div class="w-full bg-gray-100 bg-opacity-50 rounded text-base outline-none text-gray-700 py-1 px-3 leading-8">
                                         {{ $quantity }}
