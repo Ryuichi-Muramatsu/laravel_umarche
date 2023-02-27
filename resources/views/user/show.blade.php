@@ -17,31 +17,30 @@
                                     <!-- Slides -->
                                     <div class="swiper-slide">
                                         @if ($product->imageFirst->filename !== null)
-                                            <img src="{{ asset('storage/products/' . $product->imageFirst->filename) }}" alt="">
+                                        <img src="{{ asset('storage/products/' . $product->imageFirst->filename) }}"
+                                            alt="">
                                         @else
                                         <img src="" alt="">
                                         @endif
                                     </div>
                                     <div class="swiper-slide">
                                         @if ($product->imageSecond->filename !== null)
-                                            <img src="{{ asset('storage/products/' . $product->imageSecond->filename) }}" alt="">
+                                        <img src="{{ asset('storage/products/' . $product->imageSecond->filename) }}"
+                                            alt="">
                                         @else
                                         <img src="" alt="">
                                         @endif
                                     </div>
                                     <div class="swiper-slide">
                                         @if ($product->imageThird->filename !== null)
-                                            <img src="{{ asset('storage/products/' . $product->imageThird->filename) }}" alt="">
+                                        <img src="{{ asset('storage/products/' . $product->imageThird->filename) }}"
+                                            alt="">
                                         @else
                                         <img src="" alt="">
                                         @endif
                                     </div>
                                     <div class="swiper-slide">
-                                        @if ($product->imageFourth->filename !== null)
-                                            <img src="{{ asset('storage/products/' . $product->imageFourth->filename) }}" alt="">
-                                        @else
-                                        <img src="" alt="">
-                                        @endif
+
                                     </div>
                                 </div>
                                 <!-- If we need pagination -->
@@ -84,6 +83,43 @@
                             </div>
                         </div>
                     </div>
+                    <div class="border-t border-gray-400 my-8">
+                        <div class="mb-4 text-center">この商品を販売しているショップ</div>
+                        <div class="mb-4 text-center">{{ $product->shop->filename }}</div>
+                        <div class="mb-4 text-center">
+                            @if ($product->shop->filename !== null)
+                            <img class="mx-auto object-cover w-40 h-40 rounded-full"
+                                src="{{ asset('storage/shops/' . $product->shop->filename) }}" alt="">
+                            @else
+                            <img src="" alt="">
+                            @endif
+                        </div>
+                        <div class="mb-4 text-center">
+                            <button type="button" data-micromodal-trigger="modal-1" href='javascript:;'
+                                class="text-white  bg-gray-400 border-0 py-2 px-6 focus:outline-none hover:bg-gray-500 rounded">ショップの詳細を見る</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+            <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+                <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+                    <header class="modal__header">
+                        <h2 class="text-xl text-gray-700" id="modal-1-title">
+                            {{ $product->shop->name }}
+                        </h2>
+                        <button type="button" class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+                    </header>
+                    <main class="modal__content" id="modal-1-content">
+                        <p>
+                            {{$product->shop->infomation}}
+                        </p>
+                    </main>
+                    <footer class="modal__footer">
+                        <button type="button" class="modal__btn" data-micromodal-close
+                            aria-label="Close this dialog window">閉じる</button>
+                    </footer>
                 </div>
             </div>
         </div>
