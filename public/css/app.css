@@ -980,6 +980,10 @@ select {
     margin-bottom: 2rem;
 }
 
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
 .block {
     display: block;
 }
@@ -2174,6 +2178,10 @@ select {
         margin-bottom: 1.5rem;
     }
 
+    .md\:ml-2 {
+        margin-left: 0.5rem;
+    }
+
     .md\:flex {
         display: flex;
     }
@@ -2190,8 +2198,24 @@ select {
         width: 50%;
     }
 
+    .md\:w-3\/12 {
+        width: 25%;
+    }
+
+    .md\:w-4\/12 {
+        width: 33.333333%;
+    }
+
+    .md\:w-2\/12 {
+        width: 16.666667%;
+    }
+
     .md\:grid-cols-2 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .md\:items-center {
+        align-items: center;
     }
 
     .md\:justify-around {
