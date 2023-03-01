@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Models\PrimaryCategory;
 use App\Mail\TestMail;
+use App\Jobs\SendThanksMail;
 
 class ItemController extends Controller
 {
@@ -35,8 +36,8 @@ class ItemController extends Controller
 
         // dd($request);
 
-        Mail::to('ryuichi.crown1479@icloud.com')
-        ->send(new TestMail());
+        // 非同期に送信
+        SendThanksMail::dispatch();
 
         $categories = PrimaryCategory::with('secondary')
         ->get();
