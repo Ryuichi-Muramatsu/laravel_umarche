@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Image;
 use App\Models\Product;
 use App\Models\Shop;
-use App\Models\PrimaryCategory;
+use App\Models\PrimaryCfategory; 
 use App\Models\Owner;
 use App\Models\Stock;
 use Illuminate\Support\Facades\DB; //QueryBuilder
